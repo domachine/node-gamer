@@ -9,7 +9,7 @@ import R from 'ramda';
 import vm from 'vm-browserify';
 
 import api from './api';
-import Game from 'components/game.jsx';
+import Ide from 'components/ide.jsx';
 import reduce from 'reducers';
 
 const actionEmitter = new EventEmitter();
@@ -67,7 +67,7 @@ const appActions = _([[{}], actions]).concat()
 
     ReactDOM.render(
       // jshint ignore:start
-      <Game {... props}/>,
+      <Ide {... props}/>,
       // jshint ignore:end
       document.getElementById('app')
     );

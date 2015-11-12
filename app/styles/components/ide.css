@@ -1,0 +1,14 @@
+.ide__preview {
+  float: left;
+  width: 50%;
+}
+
+.ide__editor {
+  float: left;
+  width: 50%;
+}
+
+.ide {
+  margin: auto;
+  width: 1402px;
+}
