@@ -8,42 +8,13 @@ import React from 'react';
 import R from 'ramda';
 import vm from 'vm-browserify';
 
+import api from './api';
 import Game from 'components/game.jsx';
 import reduce from 'reducers';
-import {moveUp, moveDown, moveLeft, moveRight} from 'actions';
 
 const actionEmitter = new EventEmitter();
 const actions = _('action', actionEmitter);
-
-const game = {
-  moveUp() {
-    actionEmitter.emit('action', moveUp());
-  },
-
-  moveDown() {
-    actionEmitter.emit('action', moveDown());
-  },
-
-  moveLeft() {
-    actionEmitter.emit('action', moveLeft());
-  },
-
-  moveRight() {
-    actionEmitter.emit('action', moveRight());
-  },
-
-  whenKeyUp() {
-  },
-
-  whenKeyDown() {
-  },
-
-  whenKeyLeft() {
-  },
-
-  whenKeyRight() {
-  }
-};
+const game = api(actionEmitter.emit.bind(actionEmitter, 'action'));
 
 const connectGame = R.once(() => {
   document.onkeydown = e => {
