@@ -1,8 +1,10 @@
 'use strict';
 
+import R from 'ramda';
+
 import {moveUp, moveDown, moveLeft, moveRight} from 'actions';
 
-export default function(dispatch) {
+export default R.once(function(dispatch) {
   return {
     moveUp() {
       dispatch(moveUp());
@@ -32,4 +34,4 @@ export default function(dispatch) {
     whenKeyRight() {
     }
   };
-}
+});

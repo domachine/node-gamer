@@ -6,7 +6,6 @@ import xtend from 'xtend';
 import ReactDOM from 'react-dom';
 import React from 'react';
 import R from 'ramda';
-import vm from 'vm-browserify';
 
 import api from './api';
 import Ide from 'components/ide.jsx';
@@ -31,27 +30,14 @@ const connectGame = R.once(() => {
   };
 });
 
-vm.runInNewContext(`
-  function whenKeyUp() {
-    moveUp();
-  }
-
-  function whenKeyDown() {
-    moveDown();
-  }
-
-  function whenKeyLeft() {
-    moveLeft();
-  }
-
-  function whenKeyRight() {
-    moveRight();
-  }
-`, game);
-
 const initialState = reduce({}, {type: '@@INIT'});
 const appActions = _([[{}], actions]).concat()
   .flatten()
+  .map(a =>
+    typeof a.type === 'undefined'
+      ? {type: '@', data: a}
+      : a
+  )
   .doto(_.log)
   .scan(initialState, (state, action) =>
     action.type === '@'

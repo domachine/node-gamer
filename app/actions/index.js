@@ -1,9 +1,25 @@
 'use strict';
 
+import vm from 'vm-browserify';
+import _ from 'highland';
+
+import api from 'api';
+
 export const MOVE_UP = 'MOVE_UP';
 export const MOVE_DOWN = 'MOVE_DOWN';
 export const MOVE_LEFT = 'MOVE_LEFT';
 export const MOVE_RIGHT = 'MOVE_RIGHT';
+
+export function runCode(code) {
+  let values = [{error: null}];
+  const game = api();
+  try {
+    vm.runInNewContext(code, game);
+  } catch (error) {
+    values.push({error});
+  }
+  return _(values);
+}
 
 export function moveUp() {
   return {

@@ -12,9 +12,28 @@ const initialCharacters = [{
   width: 15
 }];
 
+const initialCode = `
+function whenKeyUp() {
+  moveUp();
+}
+
+function whenKeyDown() {
+  moveDown();
+}
+
+function whenKeyLeft() {
+  moveLeft();
+}
+
+function whenKeyRight() {
+  moveRight();
+}
+`;
+
 export default function(state, action) {
   return {
-    characters: characters(state.characters || initialCharacters, action)
+    characters: characters(state.characters || initialCharacters, action),
+    code: code(state.code || initialCode, action)
   };
 }
 
@@ -39,4 +58,8 @@ function characters(state, action) {
     default:
       return state;
   }
+}
+
+function code(state, action) {
+  return state;
 }
