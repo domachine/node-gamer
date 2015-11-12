@@ -1,0 +1,13 @@
+#!/bin/bash
+
+export NODE_PATH=app
+
+if [[ $NODE_ENV == production ]]; then
+  node server.js
+else
+  watchify app/app.js -o public/app.js \
+    -p [ parcelify -wo public/app.css ] \
+    -v &
+  node-dev server.js
+  wait
+fi

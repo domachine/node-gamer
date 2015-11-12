@@ -1,0 +1,8 @@
+#!/bin/bash
+
+export NODE_PATH=app
+
+if [[ $NODE_ENV == production ]]; then
+  browserify app/app.js -o public/app.js \
+    -p [ parcelify -o public/app.css ]
+fi

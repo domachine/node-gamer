@@ -1,0 +1,11 @@
+.game {
+  position: relative;
+  width: 650px;
+  height: 550px;
+  border: solid 1px #B7B4B4;
+  margin: auto;
+}
+
+.game__character {
+  position: absolute;
+}
